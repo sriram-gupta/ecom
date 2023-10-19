@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ProductService {
-  final String apiUrl = 'http://192.168.1.4:5000/products';
+  final String apiUrl =
+      'https://dummyjson.com/products'; //'http://192.168.1.4:5000/products';
 
   Future<List<dynamic>> getProducts() async {
     final response = await http.get(Uri.parse(apiUrl));
