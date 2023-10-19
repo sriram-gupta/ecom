@@ -14,7 +14,8 @@ app.use(bodyParser.json());
 
 
 app.get("/products", async (req,res)=>{
-    const data = await delayedProductList(4);
+    console.log('Get called ')
+    const data = await delayedProductList(0);
     res.send(data)
 })
 
