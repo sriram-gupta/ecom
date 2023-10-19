@@ -1,4 +1,4 @@
-import 'package:fe/api/product_provider.dart';
+import 'package:fe/api/zz_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
@@ -9,8 +9,15 @@ import 'widgets/zz_widgets.dart';
 final GoRoute _router = GoRoute(routes: const [], path: '');
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => ProductProvider(),
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (context) => ProductProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => CartProvider(),
+      )
+    ],
     child: const BharatEcom(),
   ));
 }

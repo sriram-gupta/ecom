@@ -66,6 +66,7 @@ class HeroCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("Carousel rendered again");
     return CarouselSlider(
       options: CarouselOptions(
         aspectRatio: 2.0,

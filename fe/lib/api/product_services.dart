@@ -24,7 +24,7 @@ class ProductService {
           "images": List<String>.from(item['images']),
         });
       }).toList();
-
+      print(products);
       return products;
     } else {
       throw Exception('Failed to load products');
