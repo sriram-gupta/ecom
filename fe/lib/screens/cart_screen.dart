@@ -17,6 +17,10 @@ class CartScreen extends StatelessWidget {
           children: <Widget>[
             Consumer<CartProvider>(
               builder: (context, cartProvider, child) {
+                if (cartProvider.isLoading) {
+                  return CircularProgressIndicator();
+                }
+
                 if (cartProvider.products.isEmpty) {
                   return Center(
                     child: Text('Your cart is empty.'),

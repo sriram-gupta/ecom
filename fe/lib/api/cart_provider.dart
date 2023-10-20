@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CartProvider extends ChangeNotifier {
+  bool isLoading = true;
   List products = [];
   final String cartKey =
       'cart'; // Key to store the cart data in SharedPreferences
@@ -13,6 +14,13 @@ class CartProvider extends ChangeNotifier {
   CartProvider() {
     // Load cart data from local storage when the CartProvider is initialized.
     loadCartFromLocalStorage();
+    Future.delayed(
+      Duration(seconds: 3),
+      () {
+        isLoading = false;
+        notifyListeners();
+      },
+    );
   }
 
   void addToCart(p) async {
