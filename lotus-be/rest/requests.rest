@@ -1,0 +1,10 @@
+GET http://localhost:3000/health
+
+
+###
+POST http://localhost:3000/user/registration
+Content-Type: application/json
+
+{
+    "phone_number": "9304974820"
+}
