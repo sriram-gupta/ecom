@@ -11,9 +11,10 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(
-      const Duration(seconds: 3),
+      const Duration(seconds: 1),
       () {
-        context.pushReplacement("/home");
+        // context.goNamed("login");
+        context.pushReplacement("/login");
       },
     );
 
@@ -24,13 +25,13 @@ class SplashScreen extends StatelessWidget {
           children: [
             Image.asset(
               "assets/images/bg.jpg",
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
+              width: double.infinity,
+              height: double.infinity,
               fit: BoxFit.cover,
             ),
             Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
+              width: double.infinity,
+              height: double.infinity,
               decoration: BoxDecoration(
                   gradient: LinearGradient(
                       begin: Alignment.topCenter,

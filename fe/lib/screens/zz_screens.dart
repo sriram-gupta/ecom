@@ -4,3 +4,4 @@ export 'profile_screen.dart';
 export 'cart_screen.dart';
 export 'search_screen.dart';
 export 'wishlist_screen.dart';
+export 'login_screen.dart';

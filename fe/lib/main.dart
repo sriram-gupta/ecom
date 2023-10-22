@@ -29,8 +29,6 @@ class BharatEcom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
-
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: GoRouter(routes: [
@@ -39,6 +37,11 @@ class BharatEcom extends StatelessWidget {
             path: "/",
             builder: (context, state) => const SplashScreen(),
             routes: [
+              GoRoute(
+                name: "login",
+                path: "login",
+                builder: (context, state) => LoginScreen(),
+              ),
               GoRoute(
                 name: "home",
                 path: "home",
