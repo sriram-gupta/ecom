@@ -1,10 +1,96 @@
 GET http://localhost:3000/health
 
-
 ###
-POST http://localhost:3000/user/registration
+POST http://localhost:3000/auth/generateOtp
 Content-Type: application/json
 
 {
-    "phone_number": "9304974820"
+    "phone_number": "9304974823"
 }
+
+
+###
+POST http://localhost:3000/auth/verifyOtp
+Content-Type: application/json
+
+{
+    "phone_number": "9304974824",
+    "otp": "4824"
+}
+
+
+### 
+// Get User From AccessToken [ Authentication ]
+
+GET http://localhost:3000/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTM1NGY4MGM5NGE1MDFiOGI5ZDRiMzAiLCJwaG9uZV9udW1iZXIiOiI5MzA0OTc0ODI0Iiwicm9sZXMiOlsiQ1VTVE9NRVIiXSwiY3JlYXRlZEF0IjoiMjAyMy0xMC0yMlQxNjozNjoxNi42MThaIiwidXBkYXRlZEF0IjoiMjAyMy0xMC0yMlQxNjozNjoxNi42MThaIiwiX192IjowLCJpYXQiOjE2OTc5OTI3ODgsImV4cCI6MTY5Nzk5NjM4OH0.gk5NJW5WNzPEDvFj-EoT3xoD-55RYtJ46P6e91KkmGY
+###
+
+POST http://localhost:3000/auth/refreshToken
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTM1NGY4MGM5NGE1MDFiOGI5ZDRiMzAiLCJwaG9uZV9udW1iZXIiOiI5MzA0OTc0ODI0Iiwicm9sZXMiOlsiQ1VTVE9NRVIiXSwiY3JlYXRlZEF0IjoiMjAyMy0xMC0yMlQxNjozNjoxNi42MThaIiwidXBkYXRlZEF0IjoiMjAyMy0xMC0yMlQxNjozNjoxNi42MThaIiwiX192IjowLCJpYXQiOjE2OTc5OTI3ODgsImV4cCI6MTY5Nzk5NjM4OH0.gk5NJW5WNzPEDvFj-EoT3xoD-55RYtJ46P6e91KkmGY"
+}
+
+
+
+
+###
+# ========================================= CATALOG ===============================
+
+// Added Super Category / Root Category 
+
+POST http://localhost:3000/catlog/categories
+Content-Type: application/json
+
+{
+  "name": "Electronics",
+  "parentId": null
+}
+
+###
+
+GET http://localhost:3000/catlog/categories
+Content-Type: application/json
+
+###
+
+POST http://localhost:3000/catlog/categories
+Content-Type: application/json
+
+{
+  "name": "TV",
+  "parentId": "653546003cd91014419bf739"
+}
+
+
+
+
+###
+
+POST http://localhost:3000/catlog/products
+Content-Type: application/json
+
+{
+  "name": "Laptop Model 12M",
+  "price": 999.99,
+  "categories": ["653547373cd91014419bf73d"]
+}
+
+###
+
+
+POST http://localhost:3000/catlog/products
+Content-Type: application/json
+
+{
+  "name": "Sony Smart Tv 12M",
+  "price": 1999.99,
+  "categories": ["653547793cd91014419bf746"]
+}
+
+
+
+###
+GET  http://localhost:3000/catlog/products

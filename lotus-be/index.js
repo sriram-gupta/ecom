@@ -5,8 +5,11 @@ const app = express()
 const PORT = process.env.PORT || 5000
 require('./common/db/mongo')
 const userRouter = require('./app/user/router')
+const authRouter = require('./app/auth/router')
+const productRouter = require('./app/catalog/product/router')
+const categoryRouter = require('./app/catalog/category/router')
 
-
+const auth = require('./app/auth/index')
 app.use(express.json())
 
 app.get('/health', async (req, res, next) => {
@@ -14,7 +17,13 @@ app.get('/health', async (req, res, next) => {
     res.status(200).send({ status: 'ok', message: 'Healthy' })
 })
 
+app.use(auth.attachUser)
+
 app.use('/user',userRouter)
+app.use('/auth',authRouter)
+app.use('/catlog', productRouter)
+app.use('/catlog',categoryRouter)
+
 
 app.listen(PORT, (err)=>{
     if(err){
