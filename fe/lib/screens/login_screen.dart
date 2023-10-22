@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'dart:ui';
+import 'package:fe/api/zz_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:http/http.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,17 +18,43 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isButtonActive = false;
   bool otpMode = false; // To track if OTP input is visible
 
-  void sendOTP() {
+  void sendOTP() async {
+    AuthService authService = AuthService();
+    Response sentOtpResp =
+        await authService.generateOtp(phoneNumberController.text);
+    String otp = json.decode(sentOtpResp.body)['otp'];
+
     // Implement your logic to send an OTP here
     // For this example, let's consider the button as active
     setState(() {
       isButtonActive = true;
       otpMode = true; // Switch to OTP input mode
     });
+
+    Future.delayed(const Duration(seconds: 2), () {
+      otpController.text = otp; // This will execute after a 2-second delay
+    });
   }
 
-  void login() {
-    context.pushReplacement("/home");
+  void login() async {
+    AuthService authService = AuthService();
+    Response sentOtpResp = await authService.verifyOtp(
+        phoneNumberController.text, otpController.text);
+
+    if (sentOtpResp.statusCode == 200) {
+      Map tokens = json.decode(sentOtpResp.body);
+      context.pushReplacement("/home");
+    } else {
+      // Display an error message
+      final snackBar = SnackBar(
+        content: Text('Invalid OTP'),
+        duration: Duration(seconds: 1), // You can adjust the duration
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+      otpController.clear();
+    }
+
     // Implement your login logic here
   }
 

@@ -35,7 +35,7 @@ router.post('/verifyOtp', async (req, res, next) => {
     try {
 
         const isValid = verifyOtp(phone_number, otp)
-        if (!isValid) res.status(401).send(`Invalid OTP`)
+        if (!isValid) return res.status(401).send(`Invalid OTP`)
 
         let userData = {}
 
