@@ -2,12 +2,20 @@ require('dotenv').config()
 const { logger } =  require('./common/logger')
 const express = require('express')
 const app = express()
+const cors = require('cors'); // Import the CORS package
+const bodyParser = require('body-parser'); // Import the body-parser package
+
 const PORT = process.env.PORT || 5000
 require('./common/db/mongo')
 const userRouter = require('./app/user/router')
 const authRouter = require('./app/auth/router')
 const productRouter = require('./app/catalog/product/router')
 const categoryRouter = require('./app/catalog/category/router')
+
+app.use(cors()); // Enable CORS for all routes
+app.use(bodyParser.urlencoded({ extended: true })); // Use body-parser to handle URL-encoded data
+app.use(bodyParser.json());
+
 
 const auth = require('./app/auth/index')
 app.use(express.json())
