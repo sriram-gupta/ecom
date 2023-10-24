@@ -7,7 +7,7 @@ const attachUser = async (req,res,next) => {
     if(!req.headers['authorization']){
         return next();
     }
-
+    logger.info(`User Token : ${req.headers['authorization']}`)
     const Authorization = req.headers['authorization'].split(' ')[1]
     jwt.verify(Authorization, process.env.ACCESS_TOKEN_SECRET, (err,user)=>{
         if(err){

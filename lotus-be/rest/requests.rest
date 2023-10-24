@@ -1,5 +1,9 @@
 GET http://localhost:3000/health
 
+### 
+GET http://13.233.85.57:3000/health
+
+
 ###
 POST http://localhost:3000/auth/generateOtp
 Content-Type: application/json
@@ -14,8 +18,8 @@ POST http://localhost:3000/auth/verifyOtp
 Content-Type: application/json
 
 {
-    "phone_number": "9304974824",
-    "otp": "4824"
+    "phone_number": "9304974823",
+    "otp": "4823"
 }
 
 
@@ -94,3 +98,11 @@ Content-Type: application/json
 
 ###
 GET  http://localhost:3000/catlog/products
+
+
+###
+
+
+GET http://localhost:3000/order
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTM1NGJmYTVmYjE2ODMzZTA4NDdjYzgiLCJwaG9uZV9udW1iZXIiOiI5MzA0OTc0ODIzIiwicm9sZXMiOlsiQ1VTVE9NRVIiLCJBRE1JTiJdLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTIyVDE2OjIxOjE0Ljg5MVoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTIyVDE2OjIxOjE0Ljg5MVoiLCJfX3YiOjAsImlhdCI6MTY5ODEwNDU4NywiZXhwIjoxNjk4MTA4MTg3fQ.w4fEbCDe5w7bCs7L4puazWG4pch0UY93vAxeex5p4fI

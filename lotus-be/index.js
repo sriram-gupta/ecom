@@ -11,6 +11,7 @@ const userRouter = require('./app/user/router')
 const authRouter = require('./app/auth/router')
 const productRouter = require('./app/catalog/product/router')
 const categoryRouter = require('./app/catalog/category/router')
+const orderRouter = require('./app/orders/router')
 
 app.use(cors()); // Enable CORS for all routes
 app.use(bodyParser.urlencoded({ extended: true })); // Use body-parser to handle URL-encoded data
@@ -31,6 +32,7 @@ app.use('/user',userRouter)
 app.use('/auth',authRouter)
 app.use('/catlog', productRouter)
 app.use('/catlog',categoryRouter)
+app.use('/order',orderRouter)
 
 
 app.listen(PORT, (err)=>{
