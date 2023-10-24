@@ -4,6 +4,7 @@ import 'package:fe/api/zz_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -43,6 +44,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (sentOtpResp.statusCode == 200) {
       Map tokens = json.decode(sentOtpResp.body);
+      SharedPreferences _pref = await SharedPreferences.getInstance();
+      _pref.setString("accessToken", tokens['accessToken']);
+      _pref.setString("refreshToken", tokens['refreshToken']);
+
+      //TODO:  save the tokens in local storage , open the login screen only when token is not there
       context.pushReplacement("/home");
     } else {
       // Display an error message

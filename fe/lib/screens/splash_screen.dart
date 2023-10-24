@@ -2,6 +2,7 @@ import 'package:fe/widgets/zz_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({
@@ -12,9 +13,14 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(
       const Duration(seconds: 1),
-      () {
-        // context.goNamed("login");
-        context.pushReplacement("/login");
+      () async {
+        SharedPreferences sf = await SharedPreferences.getInstance();
+        final token = sf.getString("accessToken");
+        if (token != null && token.isNotEmpty) {
+          context.pushReplacement("/home");
+        } else {
+          context.pushReplacement("/login");
+        }
       },
     );
 

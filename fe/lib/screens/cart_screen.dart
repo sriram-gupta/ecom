@@ -1,6 +1,7 @@
 import 'package:fe/api/zz_providers.dart';
 import 'package:fe/widgets/zz_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class CartScreen extends StatelessWidget {
@@ -8,6 +9,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: CustomAppBar(
         title: 'Cart Screen',
@@ -86,21 +88,30 @@ class CartScreen extends StatelessWidget {
               },
             ),
             SizedBox(height: 16),
+            Container(
+              child: Column(children: [
+                Text(
+                  'Total Price: \$${cartProvider.products.map((element) => double.parse(element['price'].toString())).reduce((value, element) => value + element)}',
+                  style: TextStyle(fontSize: 30),
+                ),
+              ]),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                ElevatedButton(
-                  onPressed: () {
-                    // Implement your "Buy" logic here
-                  },
-                  child: Text('Buy'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    // Implement your "Checkout" logic here
-                  },
-                  child: Text('Checkout'),
-                ),
+                Container(
+                  width: 300,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                        fixedSize: MaterialStateProperty.all(
+                            const Size.fromWidth(200))),
+                    onPressed: () {
+                      context.pushNamed("checkout");
+                      // Implement your "Checkout" logic here
+                    },
+                    child: Text('Place Order'),
+                  ),
+                )
               ],
             ),
           ],

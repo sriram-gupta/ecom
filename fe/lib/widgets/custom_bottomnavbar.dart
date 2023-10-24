@@ -32,7 +32,7 @@ class CustomBottomNavBar extends StatelessWidget {
               icon: const Icon(Icons.shopping_bag)),
           IconButton(
               onPressed: () {
-                context.pushNamed("profile");
+                context.pushNamed("orderList");
               },
               icon: const Icon(Icons.person))
         ],

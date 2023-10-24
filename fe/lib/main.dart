@@ -43,6 +43,16 @@ class BharatEcom extends StatelessWidget {
                 builder: (context, state) => LoginScreen(),
               ),
               GoRoute(
+                name: "orderList",
+                path: "orderList",
+                builder: (context, state) => OrderList(),
+              ),
+              GoRoute(
+                name: "checkout",
+                path: "checkout",
+                builder: (context, state) => CheckoutScreen(),
+              ),
+              GoRoute(
                 name: "home",
                 path: "home",
                 builder: (context, state) => const HomeScreen(),
